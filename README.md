@@ -2,6 +2,14 @@
 
 ---
 
+# Azure-Service-Practice
+```
+az group create --name MyResourceGroup --location eastus
+
+az vm create --resource-group myResourceGroup --name myVM --image Ubuntu2404 --size Standard_B1s --admin-username azureuser --generate-ssh-keys --no-wait
+```
+
+
 ## 1️⃣ Azure Service Connection (ARM)
 
 Used to authenticate Azure resources.
