@@ -1,0 +1,21 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: Build
+  displayName: 'Build and Deploy Stage'
+  jobs:
+  - job: AzureOperations
+    displayName: 'Azure Operations Job'
+    steps:
+    - task: AzureCLI@2
+      displayName: 'Azure CLI login and Commands with Contributor'
+      inputs:
+        azureSubscription: 'Azure-Service-Connection'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+              az vm create --resource-group myResourceGroup --name myVM --image Ubuntu2404 --size Standard_B1s --admin-username azureuser --generate-ssh-keys --no-wait
